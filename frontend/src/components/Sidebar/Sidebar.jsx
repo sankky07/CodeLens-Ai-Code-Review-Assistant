@@ -57,7 +57,7 @@ function Sidebar() {
                     </div>
                 </div>
                 <button
-                    onClick={() => { window.location.href = "http://localhost:8080/logout"; }}
+                    onClick={() => { window.location.href = "https://code-lens-ai-code-review-assistant-three.vercel.app"; }}
                     className="mt-3 w-full flex items-center justify-center gap-2 rounded-xl py-2.5 text-sm text-slate-400 hover:text-red-300 hover:bg-red-500/10 transition"
                 >
                     <LogOut size={16} /> Sign out
