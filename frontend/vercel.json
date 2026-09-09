@@ -1,8 +1,16 @@
 {
   "rewrites": [
     {
-      "source": "/(.*)",
-      "destination": "/index.html"
+      "source": "/dashboard",
+      "destination": "/"
+    },
+    {
+      "source": "/repository/:id",
+      "destination": "/"
+    },
+    {
+      "source": "/history",
+      "destination": "/"
     }
   ]
 }
