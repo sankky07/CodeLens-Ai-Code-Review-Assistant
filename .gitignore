@@ -1,0 +1,56 @@
+# =========================
+# Java / Spring Boot
+# =========================
+backend/target/
+*.class
+*.log
+
+# =========================
+# Node / React
+# =========================
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+
+# =========================
+# Environment / Secrets
+# =========================
+.env
+.env.*
+!.env.example
+
+# =========================
+# IDE
+# =========================
+.idea/
+.vscode/
+*.iml
+
+# =========================
+# OS
+# =========================
+.DS_Store
+Thumbs.db
+
+# =========================
+# Vercel
+# =========================
+.vercel/
+
+# =========================
+# Local cloned repositories
+# =========================
+repositories/
+
+# =========================
+# Temporary files
+# =========================
+*.tmp
+*.temp
+
+# Spring Boot local secrets
+backend/src/main/resources/application.properties
+
+# Accidental/local frontend files
+frontend/src.zip
+frontend/untitled/
