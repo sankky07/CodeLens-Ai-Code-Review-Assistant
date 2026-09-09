@@ -72,7 +72,12 @@ public class SecurityConfig {
                 .logout(logout -> logout
                         .logoutUrl("/logout")
                         .logoutSuccessHandler((request, response, authentication) -> {
-                            response.sendRedirect("https://code-lens-ai-code-review-assistant-nfo7i5kdy-sankky07s-projects.vercel.app/");
+                            configuration.setAllowedOrigins(
+    List.of(
+        "http://localhost:5173",
+        "https://code-lens-ai-code-review-assistant-three.vercel.app"
+    )
+);
                         })
                         .invalidateHttpSession(true)
                         .clearAuthentication(true)
