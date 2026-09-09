@@ -1,34 +1,31 @@
 spring.application.name=backend
 
 # PostgreSQL Database
-spring.datasource.url=jdbc:postgresql://localhost:5432/ai_code_review
-spring.datasource.username=postgres
-spring.datasource.password=sanket
+spring.datasource.url=${DATABASE_URL:jdbc:postgresql://localhost:5432/ai_code_review}
+spring.datasource.username=${DATABASE_USERNAME:postgres}
+spring.datasource.password=${DATABASE_PASSWORD:}
 
 # JPA
 spring.jpa.hibernate.ddl-auto=update
-spring.jpa.show-sql=true
-spring.jpa.properties.hibernate.format_sql=true
+spring.jpa.show-sql=false
+spring.jpa.properties.hibernate.format_sql=false
 
 # Server
-server.port=8080
+server.port=${PORT:8080}
 
 # GitHub OAuth
-spring.security.oauth2.client.registration.github.client-id=Ov23liAFnEoIQ9sO8ABO
-spring.security.oauth2.client.registration.github.client-secret=84ccc0abb3b00fb325143e63819fa0b55a082966
-
-spring.security.oauth2.client.registration.github.scope=read:user,user:email
-
+spring.security.oauth2.client.registration.github.client-id=${GITHUB_CLIENT_ID}
+spring.security.oauth2.client.registration.github.client-secret=${GITHUB_CLIENT_SECRET}
+spring.security.oauth2.client.registration.github.scope=read:user,user:email,repo
 spring.security.oauth2.client.registration.github.redirect-uri={baseUrl}/login/oauth2/code/{registrationId}
 
 # JWT
-jwt.secret=ZmQ2MjNkYjM5MzA5NjFkN2Y3NjY2YjQ5NDU0MGEwOTYxMzMwMzJhYmI0NDU2Y2I5N2MwMjU0YTY5YzUyYQ==
-jwt.expiration=86400000
+jwt.secret=${JWT_SECRET}
+jwt.expiration=${JWT_EXPIRATION:86400000}
 
-gemini.api.key=
-groq.api.key=
+# Groq
+groq.api.key=${GROQ_API_KEY}
 
+# Cross-site session cookie
 server.servlet.session.cookie.same-site=none
 server.servlet.session.cookie.secure=true
-
-
