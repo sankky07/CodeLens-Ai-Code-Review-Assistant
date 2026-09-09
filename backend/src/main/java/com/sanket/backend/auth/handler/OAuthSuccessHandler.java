@@ -48,5 +48,6 @@ public class OAuthSuccessHandler implements AuthenticationSuccessHandler {
                 accessToken
         );
 
-        response.sendRedirect("https://code-lens-ai-code-review-assistant-three.vercel.app/dashboard");    }
+        response.sendRedirect(
+        "https://code-lens-ai-code-review-assistant-three.vercel.app/dashboard");    }
 }
