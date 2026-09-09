@@ -1,163 +1,491 @@
 # 🔍 CodeLens — AI Code Review Assistant
 
-> **AI-powered code review for GitHub repositories.**
+> AI-powered GitHub code review platform that analyzes repositories and generates structured, actionable feedback on code quality, bugs, security, performance, code smells, and best practices.
 
-CodeLens is a full-stack AI code review platform that analyzes source code from GitHub repositories and provides structured feedback on **bugs, security vulnerabilities, performance issues, code smells, best practices, and potential improvements**.
+[![Java](https://img.shields.io/badge/Java-21-orange?style=for-the-badge&logo=openjdk)](https://www.oracle.com/java/)
+[![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.5-brightgreen?style=for-the-badge&logo=springboot)](https://spring.io/projects/spring-boot)
+[![React](https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react)](https://react.dev/)
+[![Vite](https://img.shields.io/badge/Vite-8-646CFF?style=for-the-badge&logo=vite)](https://vite.dev/)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-18-336791?style=for-the-badge&logo=postgresql)](https://www.postgresql.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-4-06B6D4?style=for-the-badge&logo=tailwindcss)](https://tailwindcss.com/)
+[![GitHub OAuth](https://img.shields.io/badge/GitHub-OAuth-black?style=for-the-badge&logo=github)](https://github.com/)
+[![Groq](https://img.shields.io/badge/AI-Groq-orange?style=for-the-badge)](https://groq.com/)
 
-Instead of manually reviewing large repositories file by file, CodeLens uses an LLM-powered analysis pipeline to produce an organized code-quality report with an overall score and actionable recommendations.
+---
+
+## 🌐 Live Demo
+
+**Live Application:** https://code-lens-ai-code-review-assistant-three.vercel.app
+
+**Source Code:** https://github.com/sankky07/CodeLens-Ai-Code-Review-Assistant
+
+---
+
+## 📌 Overview
+
+CodeLens is a full-stack AI-powered code review platform that connects directly with GitHub.
+
+Developers can authenticate with GitHub, synchronize repositories, select a repository, and run an AI-powered analysis of supported source files.
+
+CodeLens produces a structured review containing:
+
+- Overall code-quality score
+- Overall summary
+- Strengths
+- Critical issues
+- Bugs
+- Security issues
+- Performance issues
+- Code smells
+- Best practices
+- Suggested improvements
+- Files reviewed
+
+The goal is to provide fast, understandable, and actionable feedback that can supplement human code review.
 
 ---
 
 ## ✨ Features
 
+### 🔐 GitHub Authentication
+- GitHub OAuth 2.0 authentication
+- Server-side session authentication
+- User persistence with PostgreSQL
+- GitHub access-token management
+
+### 📦 GitHub Repository Integration
+- Import repositories from GitHub
+- Synchronize repository data
+- Browse connected repositories
+- Open repository details
+- Analyze supported source files
+
 ### 🤖 AI-Powered Code Review
+CodeLens analyzes source code for:
+- 🐛 Bugs and potential logic errors
+- 🔒 Security issues
+- ⚡ Performance problems
+- 🧹 Code smells and maintainability concerns
+- ✅ Best-practice violations
+- 💡 Suggested improvements
 
-Analyze repository source code using an LLM and receive structured review results.
+### 📊 Structured Review Results
+Reviews are returned as structured data rather than a single unstructured AI response.
 
-### 🐛 Bug Detection
+```text
+Overall Summary
+Score
+Score Label
+Strengths
+Critical Issues
+Bugs
+Security Issues
+Performance Issues
+Code Smells
+Best Practices
+Suggested Improvements
+Files Reviewed
+```
 
-Identifies potential bugs, incorrect logic, error-prone implementations, and problematic code patterns.
-
-### 🔐 Security Analysis
-
-Highlights potential security vulnerabilities and insecure coding practices.
-
-### ⚡ Performance Analysis
-
-Detects inefficient implementations and areas where application performance could be improved.
-
-### 🧹 Code Smell Detection
-
-Finds maintainability problems, duplicated logic, overly complex code, and other code-quality issues.
-
-### 📊 Code Quality Score
-
-Generates an overall score with a corresponding quality label to provide a quick assessment of the repository.
-
-### 📁 Repository Analysis
-
-Connects with GitHub repositories and scans supported source files while applying review limits to keep AI requests manageable.
-
-### 📋 Structured Review
-
-Review results are organized into sections including:
-
-* Overall Summary
-* Strengths
-* Critical Issues
-* Bugs
-* Security Issues
-* Performance Issues
-* Code Smells
-* Best Practices
-* Suggested Improvements
-* Files Reviewed
-
-### 🔐 GitHub OAuth Authentication
-
-Users can authenticate through GitHub and work with their repositories securely.
-
-### 🗂️ Review History
-
-Previous repository reviews can be stored and accessed for later reference.
-
----
-
-## 🏗️ Tech Stack
-
-### Frontend
-
-* React 19
-* Vite
-* Tailwind CSS
-* Framer Motion
-* Axios
-* React Router
-* React Markdown
-* React Hot Toast
-* Lucide React
-
-### Backend
-
-* Java 21
-* Spring Boot 3.5
-* Spring Security
-* Spring Data JPA
-* Spring OAuth2 Client
-* REST APIs
-* JWT
-* JGit
-* GitHub API
-
-### Database & Infrastructure
-
-* PostgreSQL
-* Redis
-* Maven
-
-### AI
-
-* Groq API
-* OpenAI-compatible API
-* `openai/gpt-oss-120b`
+### 📝 Review History
+Completed reviews are stored so previous analysis can be revisited through the application.
 
 ---
 
 ## 🧠 How It Works
 
 ```text
-┌─────────────────────┐
-│      React UI       │
-│     Frontend        │
-└──────────┬──────────┘
-           │
-           │ REST API
-           ▼
-┌─────────────────────┐
-│   Spring Boot API   │
-│      Backend        │
-└──────────┬──────────┘
-           │
-     ┌─────┼──────────┐
-     │     │          │
-     ▼     ▼          ▼
- GitHub  PostgreSQL  Redis
-     │
-     ▼
-┌─────────────────────┐
-│ Repository Scanner  │
-│  & File Extraction  │
-└──────────┬──────────┘
-           │
-           ▼
-┌─────────────────────┐
-│      Groq LLM       │
-│  AI Code Analysis   │
-└──────────┬──────────┘
-           │
-           ▼
-┌─────────────────────┐
-│ Structured Review   │
-│       Report        │
-└─────────────────────┘
+GitHub Repository
+        │
+        ▼
+Repository Synchronization
+        │
+        ▼
+Source File Discovery
+        │
+        ▼
+File Filtering & Limits
+        │
+        ▼
+Repository Context
+        │
+        ▼
+Groq LLM Analysis
+        │
+        ▼
+Structured JSON Response
+        │
+        ▼
+Backend Validation
+        │
+        ▼
+PostgreSQL Persistence
+        │
+        ▼
+Frontend Review Dashboard
 ```
-
-### Review Pipeline
-
-1. User authenticates with GitHub.
-2. User selects a repository.
-3. CodeLens retrieves the repository source.
-4. The backend scans supported source files.
-5. Files are filtered and bounded to keep the AI request within practical limits.
-6. Relevant source code is sent to the AI model.
-7. The model returns structured JSON analysis.
-8. The backend validates and processes the result.
-9. The frontend displays the complete code review.
-10. The review can be stored in review history.
 
 ---
 
-## 📂 Project Structure
+## 🏗️ Architecture
+
+```text
+                           ┌─────────────────────┐
+                           │       GitHub        │
+                           │                     │
+                           │ OAuth + Repository  │
+                           │       API           │
+                           └──────────┬──────────┘
+                                      │
+                              OAuth 2.0 / API
+                                      │
+                                      ▼
+┌────────────────────────────────────────────────────────────┐
+│                         CodeLens                            │
+│                                                            │
+│   ┌──────────────────────┐        REST API                │
+│   │    React Frontend    │ ───────────────────────────┐   │
+│   │ React + Vite         │                            │   │
+│   │ Tailwind + Motion    │                            ▼   │
+│   └──────────────────────┘                  ┌─────────────┐
+│                                             │ Spring Boot │
+│                                             │   Backend   │
+│                                             └──────┬──────┘
+└────────────────────────────────────────────────────┼────────
+                                                     │
+                         ┌───────────────────────────┼────────────┐
+                         ▼                           ▼            ▼
+                  ┌─────────────┐             ┌────────────┐ ┌────────────┐
+                  │ PostgreSQL  │             │ GitHub API │ │  Groq LLM  │
+                  │ Users       │             │ Repositories││ AI Review  │
+                  │ Repositories│             │ & metadata │ │ Analysis   │
+                  │ Reviews     │             └────────────┘ └────────────┘
+                  └─────────────┘
+```
+
+---
+
+## 🛠️ Technology Stack
+
+### Frontend
+
+| Technology | Purpose |
+|---|---|
+| React 19 | User interface |
+| Vite 8 | Frontend tooling and build system |
+| Tailwind CSS 4 | Styling |
+| Framer Motion | Animations and transitions |
+| Axios | HTTP communication |
+| React Router | Client-side routing |
+| React Hot Toast | Notifications |
+| React Markdown | Markdown rendering |
+| Lucide React | Icons |
+
+### Backend
+
+| Technology | Purpose |
+|---|---|
+| Java 21 | Backend language |
+| Spring Boot 3.5.x | Application framework |
+| Spring Security | Authentication and authorization |
+| Spring OAuth2 Client | GitHub OAuth integration |
+| Spring Data JPA | Persistence |
+| Hibernate | ORM |
+| REST APIs | Frontend/backend communication |
+| JGit / GitHub API libraries | Repository interaction |
+| Maven | Build and dependency management |
+
+### Database
+
+**PostgreSQL**
+
+Used for persistent application data including users, repositories, review results, and review history.
+
+### AI
+
+**Groq API**
+
+CodeLens uses Groq through an OpenAI-compatible API interface. The backend requests structured JSON output from the model and validates the resulting review before returning it to the frontend.
+
+### Deployment
+
+- **Frontend:** Vercel
+- **Backend:** Render
+- **Database:** Render PostgreSQL
+
+---
+
+## 🔐 Authentication Flow
+
+CodeLens uses GitHub OAuth 2.0.
+
+```text
+User
+ │
+ ▼
+CodeLens Login
+ │
+ ▼
+Spring Security OAuth2
+ │
+ ▼
+GitHub Authorization
+ │
+ ▼
+GitHub Callback
+ │
+ ▼
+OAuthSuccessHandler
+ │
+ ├── Retrieve GitHub user
+ ├── Retrieve OAuth access token
+ ├── Create/update user
+ └── Persist authenticated session
+ │
+ ▼
+Dashboard
+```
+
+Protected API endpoints require an authenticated session.
+
+---
+
+## 📂 Repository Analysis
+
+CodeLens discovers and filters source files before constructing the AI review context.
+
+The backend applies practical analysis boundaries, including:
+- Maximum number of source files
+- Maximum characters per file
+- Maximum total review context
+
+This helps control model input size and keeps repository analysis manageable.
+
+---
+
+## 📊 Code Quality Scoring
+
+Each completed review produces a numerical code-quality score and a corresponding label.
+
+Example:
+
+```text
+82 / 100
+GOOD
+```
+
+The backend validates and normalizes the AI-generated score before storing it.
+
+---
+
+## 🖥️ Application Pages
+
+### Login
+GitHub OAuth authentication entry point.
+
+### Dashboard
+Displays repositories associated with the authenticated GitHub account and provides repository synchronization.
+
+### Repository Review
+Displays AI-generated analysis for a selected repository, including score, findings, and recommendations.
+
+### Review History
+Provides access to previously completed reviews.
+
+---
+
+## 📡 API
+
+The backend provides REST endpoints for:
+- Health checks
+- GitHub repository synchronization
+- Repository retrieval
+- Repository details
+- AI review operations
+- Review history
+
+### Health Check
+
+```text
+GET /api/health
+```
+
+### API Documentation
+
+When running locally:
+
+```text
+http://localhost:8080/swagger-ui/index.html
+```
+
+---
+
+## 🚀 Deployment
+
+```text
+                 ┌──────────────┐
+                 │   Vercel     │
+                 │   Frontend   │
+                 └──────┬───────┘
+                        │
+                     REST API
+                        │
+                        ▼
+                 ┌──────────────┐
+                 │   Render     │
+                 │ Spring Boot  │
+                 └──────┬───────┘
+                        │
+              ┌─────────┼─────────┐
+              ▼         ▼         ▼
+         PostgreSQL  GitHub API  Groq
+```
+
+---
+
+## ⚙️ Local Development
+
+### Prerequisites
+
+- Java 21
+- Node.js and npm
+- PostgreSQL
+- Git
+- GitHub OAuth application
+- Groq API key
+
+### Clone
+
+```bash
+git clone https://github.com/sankky07/CodeLens-Ai-Code-Review-Assistant.git
+cd CodeLens-Ai-Code-Review-Assistant
+```
+
+### Backend
+
+```bash
+cd backend
+```
+
+Configure:
+
+```text
+DATABASE_URL
+DATABASE_USERNAME
+DATABASE_PASSWORD
+GITHUB_CLIENT_ID
+GITHUB_CLIENT_SECRET
+JWT_SECRET
+JWT_EXPIRATION
+GROQ_API_KEY
+```
+
+Run on Windows:
+
+```bash
+mvnw.cmd spring-boot:run
+```
+
+Run on Linux/macOS:
+
+```bash
+./mvnw spring-boot:run
+```
+
+Backend:
+
+```text
+http://localhost:8080
+```
+
+Health check:
+
+```text
+http://localhost:8080/api/health
+```
+
+### Frontend
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+Frontend:
+
+```text
+http://localhost:5173
+```
+
+Local API:
+
+```text
+VITE_API_URL=http://localhost:8080
+```
+
+---
+
+## 🔑 Environment Variables
+
+Secrets must never be committed to source control.
+
+### Backend
+
+```text
+DATABASE_URL
+DATABASE_USERNAME
+DATABASE_PASSWORD
+GITHUB_CLIENT_ID
+GITHUB_CLIENT_SECRET
+GROQ_API_KEY
+JWT_SECRET
+JWT_EXPIRATION
+```
+
+### Frontend
+
+```text
+VITE_API_URL
+```
+
+Use environment-specific values for local and production deployments.
+
+---
+
+## 🔒 Security
+
+CodeLens uses:
+- GitHub OAuth 2.0
+- Spring Security
+- Protected API endpoints
+- Server-side authenticated sessions
+- Secure production cookies
+- HTTPS in production
+- Environment-based secret configuration
+- Repository analysis limits
+
+Never commit API keys, OAuth secrets, database passwords, JWT secrets, `.env` files, or production configuration containing credentials.
+
+---
+
+## 🧪 Error Handling
+
+The application handles common failure scenarios including:
+- GitHub authentication failures
+- GitHub API failures
+- Repository synchronization failures
+- Invalid repository requests
+- AI analysis failures
+- Unsupported source files
+- Large repository analysis limits
+- Database errors
+
+The frontend provides user-facing feedback instead of exposing internal implementation details.
+
+---
+
+## 📁 Project Structure
 
 ```text
 CodeLens-Ai-Code-Review-Assistant/
@@ -167,333 +495,169 @@ CodeLens-Ai-Code-Review-Assistant/
 │   │   ├── main/
 │   │   │   ├── java/
 │   │   │   │   └── com/sanket/backend/
-│   │   │   │       ├── ai/
 │   │   │   │       ├── auth/
-│   │   │   │       ├── common/
 │   │   │   │       ├── controller/
-│   │   │   │       ├── dto/
 │   │   │   │       ├── entity/
-│   │   │   │       ├── exception/
-│   │   │   │       ├── github/
 │   │   │   │       ├── repository/
 │   │   │   │       ├── security/
-│   │   │   │       └── service/
-│   │   │   │
+│   │   │   │       ├── service/
+│   │   │   │       └── ...
 │   │   │   └── resources/
-│   │   │       └── application.properties.example
-│   │   │
 │   │   └── test/
-│   │
-│   └── pom.xml
+│   ├── Dockerfile
+│   ├── pom.xml
+│   └── mvnw
 │
 ├── frontend/
 │   ├── src/
 │   │   ├── components/
-│   │   ├── layouts/
 │   │   ├── pages/
 │   │   ├── routes/
 │   │   ├── services/
-│   │   ├── styles/
-│   │   ├── App.jsx
-│   │   └── main.jsx
-│   │
+│   │   └── ...
+│   ├── public/
 │   ├── package.json
-│   └── vite.config.js
+│   ├── vite.config.js
+│   └── vercel.json
 │
 ├── .gitignore
-└── README.md
+├── README.md
+└── LICENSE
 ```
 
 ---
 
-## ⚙️ Local Development
+## 🧩 Engineering Highlights
 
-### Prerequisites
+### Structured AI Output
+AI responses are requested in JSON format and mapped into a structured review model.
 
-Make sure you have:
+### Analysis Boundaries
+Repository analysis is bounded by file count and character limits to control model input size.
 
-* Java 21+
-* Maven
-* Node.js
-* PostgreSQL
-* Redis
-* Git
-* GitHub OAuth application
-* Groq API key
+### Separation of Concerns
+The application separates UI presentation, REST APIs, business logic, authentication, GitHub integration, AI analysis, and persistence.
 
----
-
-## 🔧 Backend Configuration
-
-Navigate to:
-
-```text
-backend/src/main/resources/
-```
-
-Create:
-
-```text
-application.properties
-```
-
-using:
-
-```text
-application.properties.example
-```
-
-Configure your local environment with the required:
-
-* PostgreSQL credentials
-* GitHub OAuth credentials
-* JWT configuration
-* Groq API key
-* Redis configuration
-* Application settings
-
-**Never commit real API keys, passwords, OAuth secrets, or JWT secrets to Git.**
+### Production Deployment
+Frontend, backend, and database are deployed as separate services.
 
 ---
 
-## ▶️ Running the Backend
+## 🚧 Current Limitations
 
-From the project root:
-
-```bash
-cd backend
-```
-
-Then run:
-
-```bash
-./mvnw spring-boot:run
-```
-
-On Windows:
-
-```powershell
-.\mvnw.cmd spring-boot:run
-```
-
-The backend will start using the configured Spring Boot port.
-
----
-
-## ▶️ Running the Frontend
-
-Open another terminal:
-
-```bash
-cd frontend
-```
-
-Install dependencies:
-
-```bash
-npm install
-```
-
-Start the development server:
-
-```bash
-npm run dev
-```
-
-Vite will provide the local development URL.
-
----
-
-## 🔑 Environment Variables & Secrets
-
-The following types of credentials are required depending on your configuration:
-
-```text
-DATABASE_URL
-DATABASE_USERNAME
-DATABASE_PASSWORD
-
-GITHUB_CLIENT_ID
-GITHUB_CLIENT_SECRET
-
-GROQ_API_KEY
-
-JWT_SECRET
-
-REDIS_URL
-```
-
-Use environment variables or local configuration files for secrets.
-
-The repository intentionally contains an example configuration rather than production credentials.
-
----
-
-## 🛡️ AI Review Limits
-
-To keep repository analysis practical and prevent excessively large AI requests, CodeLens applies limits during source-code scanning.
-
-The review pipeline limits:
-
-* Number of source files analyzed
-* Characters analyzed per file
-* Total characters sent for analysis
-
-Unreadable or unsupported files are skipped.
-
-This allows CodeLens to provide useful repository-level analysis without blindly sending an entire repository to the AI model.
-
----
-
-## 📊 Review Output
-
-A typical CodeLens review contains:
-
-```text
-Overall Score
-      │
-      ├── Overall Summary
-      │
-      ├── Strengths
-      │
-      ├── Critical Issues
-      │
-      ├── Bugs
-      │
-      ├── Security Issues
-      │
-      ├── Performance Issues
-      │
-      ├── Code Smells
-      │
-      ├── Best Practices
-      │
-      ├── Suggested Improvements
-      │
-      └── Files Reviewed
-```
-
-The frontend presents these results through an interactive review interface.
-
----
-
-## 🔒 Security Considerations
-
-CodeLens handles authentication and external API credentials, so security is an important part of the architecture.
-
-Key considerations include:
-
-* GitHub OAuth authentication
-* JWT-based application authentication
-* Server-side API credentials
-* Environment-based secret configuration
-* PostgreSQL persistence
-* CORS configuration
-* Repository access through authenticated GitHub APIs
-* No hard-coded production secrets in source control
-
----
-
-## 🚀 Deployment
-
-The project is designed to be deployed as separate frontend and backend services.
-
-### Frontend
-
-The React/Vite application can be deployed using platforms such as Vercel.
-
-### Backend
-
-The Spring Boot application can be deployed using platforms such as Render or another Java-compatible cloud platform.
-
-### Database
-
-PostgreSQL can be hosted using a managed PostgreSQL provider.
-
-Production deployment requires configuring:
-
-* Backend environment variables
-* Production PostgreSQL connection
-* Redis
-* GitHub OAuth callback URL
-* CORS allowed origins
-* Frontend API URL
-* Groq API credentials
-
----
-
-## 🧪 Testing
-
-Backend tests are located under:
-
-```text
-backend/src/test/
-```
-
-Run the backend test suite with:
-
-```bash
-cd backend
-./mvnw test
-```
-
-On Windows:
-
-```powershell
-.\mvnw.cmd test
-```
+- AI-generated findings should be verified by a developer.
+- Very large repositories require analysis limits.
+- Review quality depends on the source-code context supplied to the model.
+- AI analysis depends on external model/API availability.
+- The current workflow focuses on repository analysis rather than automated pull-request comments.
 
 ---
 
 ## 🔮 Future Improvements
 
-Potential improvements for future versions include:
+- [ ] GitHub Pull Request integration
+- [ ] Automated PR reviews
+- [ ] Inline GitHub review comments
+- [ ] Review comparison between commits
+- [ ] Support for additional programming languages
+- [ ] Team and project workspaces
+- [ ] Custom review rules
+- [ ] Configurable severity levels
+- [ ] CI/CD integration
+- [ ] Code-quality analytics
+- [ ] Quality trends over time
+- [ ] Streaming AI review results
+- [ ] Advanced security analysis
+- [ ] Review export
 
-* Pull request review automation
-* GitHub webhook integration
-* Line-level code comments
-* Multi-model AI support
-* Review comparison between commits
-* Repository-wide architecture analysis
-* Custom review rules
-* Team workspaces
-* Exportable review reports
-* CI/CD integration
-* Automated quality gates
-* Improved large-repository handling
-* Code quality trends over time
+---
+
+## 🎯 Project Goals
+
+CodeLens was built to explore how modern AI systems can be integrated into a real developer workflow.
+
+The project combines:
+- Full-stack web development
+- OAuth authentication
+- GitHub API integration
+- REST API design
+- Relational database persistence
+- LLM-powered analysis
+- Structured AI responses
+- Cloud deployment
+
+CodeLens is designed to **assist developers, not replace human code review**.
+
+---
+
+## 📸 Screenshots
+
+Add production screenshots to a `docs/` directory.
+
+### Login
+
+![CodeLens Login](docs/login.png)
+
+### Dashboard
+
+![CodeLens Dashboard](docs/dashboard.png)
+
+### Repository
+
+![CodeLens Repository](docs/repository.png)
+
+### AI Code Review
+
+![CodeLens AI Review](docs/review.png)
+
+### Review History
+
+![CodeLens History](docs/history.png)
+
+---
+
+## 📊 Project Summary
+
+| Area | Technology |
+|---|---|
+| Frontend | React 19 + Vite 8 |
+| Styling | Tailwind CSS 4 |
+| Backend | Java 21 + Spring Boot 3.5 |
+| Authentication | GitHub OAuth 2.0 |
+| Database | PostgreSQL |
+| ORM | JPA / Hibernate |
+| AI | Groq API |
+| API | REST |
+| Repository Integration | GitHub API |
+| Frontend Deployment | Vercel |
+| Backend Deployment | Render |
+| Database Hosting | Render PostgreSQL |
 
 ---
 
 ## 👨‍💻 Author
 
-**Sanket Sahu**
+### Sanket Sahu
 
-Full-Stack Developer interested in:
+Software Developer interested in:
+- Full-Stack Development
+- Java & Spring Boot
+- React
+- AI / LLM Applications
+- Python
+- Developer Tools
 
-* Java & Spring Boot
-* React
-* AI/LLM applications
-* Backend engineering
-* Developer tools
-* Software architecture
-
----
-
-## ⭐ Why CodeLens?
-
-Traditional code review can become difficult when repositories grow large.
-
-CodeLens combines:
-
-**GitHub + Spring Boot + React + AI + structured analysis**
-
-to create a developer-focused code review workflow that turns source code into an actionable engineering report.
-
-If you find the project useful, consider giving the repository a ⭐.
+**GitHub:**  
+https://github.com/sankky07
 
 ---
 
-## 📄 License
+## ⭐ Support
 
-This project is currently available for educational and portfolio purposes.
+If you find CodeLens useful or interesting, consider giving the repository a ⭐ on GitHub.
+
+---
+
+<p align="center">
+  Built with ☕ Java, ⚛️ React, 🤖 AI, and a lot of debugging.
+</p>
