@@ -23,17 +23,16 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
         http
-
                 .cors(cors -> cors.configurationSource(request -> {
 
                     CorsConfiguration configuration = new CorsConfiguration();
 
                     configuration.setAllowedOrigins(
-    List.of(
-        "http://localhost:5173",
-        "https://code-lens-ai-code-review-assistant-nfo7i5kdy-sankky07s-projects.vercel.app"
-    )
-);
+                            List.of(
+                                    "http://localhost:5173",
+                                    "https://code-lens-ai-code-review-assistant-three.vercel.app"
+                            )
+                    );
 
                     configuration.setAllowedMethods(
                             List.of("GET", "POST", "PUT", "DELETE", "OPTIONS")
@@ -46,13 +45,11 @@ public class SecurityConfig {
                     configuration.setAllowCredentials(true);
 
                     return configuration;
-
                 }))
 
                 .csrf(csrf -> csrf.disable())
 
                 .authorizeHttpRequests(auth -> auth
-
                         .requestMatchers(
                                 "/api/health",
                                 "/swagger-ui/**",
@@ -62,7 +59,6 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
 
                         .anyRequest().authenticated()
-
                 )
 
                 .oauth2Login(oauth -> oauth
@@ -72,12 +68,9 @@ public class SecurityConfig {
                 .logout(logout -> logout
                         .logoutUrl("/logout")
                         .logoutSuccessHandler((request, response, authentication) -> {
-                            configuration.setAllowedOrigins(
-    List.of(
-        "http://localhost:5173",
-        "https://code-lens-ai-code-review-assistant-three.vercel.app"
-    )
-);
+                            response.sendRedirect(
+                                    "https://code-lens-ai-code-review-assistant-three.vercel.app/"
+                            );
                         })
                         .invalidateHttpSession(true)
                         .clearAuthentication(true)
