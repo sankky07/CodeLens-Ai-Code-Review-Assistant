@@ -3,10 +3,10 @@ import { motion } from "framer-motion";
 import toast from "react-hot-toast";
 
 function Login() {
-    const login = () => {
-        toast("Redirecting to GitHub…");
-        window.location.href = "http://localhost:8080/oauth2/authorization/github";
-    };
+   const login = () => {
+    toast("Redirecting to GitHub…");
+    window.location.href = "https://codelens-ai-code-review-assistant.onrender.com/oauth2/authorization/github";
+};
 
     return <div className="min-h-screen app-shell relative flex items-center justify-center px-5 py-10 overflow-hidden">
         <div className="absolute -top-48 -left-48 h-[520px] w-[520px] rounded-full bg-blue-600/10 blur-[140px]" />
