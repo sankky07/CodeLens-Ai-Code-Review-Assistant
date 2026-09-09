@@ -29,8 +29,11 @@ public class SecurityConfig {
                     CorsConfiguration configuration = new CorsConfiguration();
 
                     configuration.setAllowedOrigins(
-                            List.of("http://localhost:5173")
-                    );
+    List.of(
+        "http://localhost:5173",
+        "https://code-lens-ai-code-review-assistant-nfo7i5kdy-sankky07s-projects.vercel.app"
+    )
+);
 
                     configuration.setAllowedMethods(
                             List.of("GET", "POST", "PUT", "DELETE", "OPTIONS")
